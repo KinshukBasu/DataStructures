@@ -2,6 +2,7 @@ package Stack;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.Iterator;
 
 import static java.lang.Integer.max;
 
@@ -11,7 +12,7 @@ import static java.lang.Integer.max;
 //Generic implementation of Stack in Java
 //TODO Implement iterator
 
-public class MyStack<Item>{
+public class MyStack<Item> implements Stack{
 
     private Item container[];
     private int top;
@@ -65,8 +66,7 @@ public class MyStack<Item>{
         }
     }
 
-    public void push(Item x){
-
+    public void push(Item x) {
         if(top==container.length-1){
             resize(sizeParam.INCREASE);
         }
@@ -105,6 +105,25 @@ public class MyStack<Item>{
         container=temp;
 
     }
+
+    public Iterator<Item> iterator(){
+        return new MyStackIterator();
+    }
+
+    private class MyStackIterator implements Iterator<Item>{
+
+        private int i = top;
+
+        public boolean hasNext(){
+            return (i>-1);
+        }
+        public Item next(){
+            Item x = container[i];
+            --i;
+            return(x);
+        }
+    }
+
 
 
 
