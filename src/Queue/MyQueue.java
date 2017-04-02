@@ -21,7 +21,7 @@ public class MyQueue<Item> implements Queue<Item> {
             this.data = data;
             next = null;
         }
-        
+
     }
 
     private Node front, rear;
